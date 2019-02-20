@@ -1,33 +1,30 @@
 #! /bin/bash
-option="Nombre_usuario Dirección_ip Num_usuarios"
-read -p "¿Quieres ver el menú? Pulsa Y/y " confi
-if [ $confi = Y ] || [ $confi = y ]
-then
-select opt in $option
+read -p "¿Quieres que te salga el menu? escribe Y o y" confirm
+
+while [ $confirm = y ] || [ $confirm = Y ]
 do
-        if[ $opt = "Nombre_usuario" ]
-                then
-                usu=`whoami`
-                echo $usu
-                read -p "Pon el nombre del usuario" usuesc
-                        if [ $usu = $usuesc ]
-                        then
-                        echo "¡Felicidades, es correcto!"
-                        else
-                        echo "Está mal"
-                        exit
-        elif[ $opt = "Direccion_ip" ]
-        then
-        echo Dir.ip
-        exit
-        elif[ $opt = "Num_usuarios" ]
-        echo Num_usuarios
-        exit
-        fi
-else
-echo no
-fi
-
-
-
-
+echo "Estas son tus opciones"
+echo "1   > Te indica el usuario en este momento."
+echo "2   > Te indica la dirección ip."
+echo "3   >  Te indica el numero de usuarios conectados"
+echo "Y/y > Sales del script"
+read -p "escribe opcion: " opt
+	case $opt in
+		"1")
+			echo `whoami`
+		;;
+		"2")
+			ifconfig |grep inet| head -n 1
+		;;
+		"3")
+			who
+		;;
+		"y")
+			exit
+		;;
+		"Y")
+			exit
+		;;
+		*) echo "Opcion invalida" ;;
+	esac
+done
