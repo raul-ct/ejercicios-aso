@@ -14,7 +14,7 @@ do
 			c=$(( $c +1 ))
 	fi
 done
-if [ $c -eq 2 ]
+if [ $c -le 2 ]
 then 
 	echo "El numero SI es primo"
 else
